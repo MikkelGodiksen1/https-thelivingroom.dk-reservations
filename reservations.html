@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reserver et bord hos The Living Room — Cafe & Cocktail Bar i København.">
+  <title>Reservations | The Living Room</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav nav--solid" id="navbar">
+    <a href="index.html" class="nav__logo">The Living Room</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="cocktails.html">Cocktails</a></li>
+      <li><a href="food-drinks.html">Food & Drinks</a></li>
+      <li><a href="reservations.html">Reservations</a></li>
+    </ul>
+  </nav>
+
+  <!-- Reservations -->
+  <main class="reservations-page">
+
+    <div class="menu-header">
+      <h1 class="menu-header__title">Reservations</h1>
+    </div>
+
+    <div class="reservations-intro">
+      <p>Reserve your table at The Living Room. Whether it's an intimate evening or a gathering with friends, we'll make sure you have the perfect spot.</p>
+    </div>
+
+    <form class="reservation-form" action="https://formspree.io/f/your-form-id" method="POST">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Your name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <select id="time" name="time" required>
+            <option value="" disabled selected>Select time</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+            <option value="23:00">23:00</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="guests">Number of Guests</label>
+        <select id="guests" name="guests" required>
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 person</option>
+          <option value="2">2 persons</option>
+          <option value="3">3 persons</option>
+          <option value="4">4 persons</option>
+          <option value="5">5 persons</option>
+          <option value="6">6 persons</option>
+          <option value="7">7 persons</option>
+          <option value="8">8 persons</option>
+          <option value="9">9 persons</option>
+          <option value="10">10 persons</option>
+          <option value="11">11 persons</option>
+          <option value="12">12+ persons</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Special Requests</label>
+        <textarea id="message" name="message" placeholder="Any special requests or notes..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Reserve a Table</button>
+
+    </form>
+
+    <!-- Opening Hours Reference -->
+    <section class="section hours" style="padding-top: 2rem;">
+      <h2 class="section__title">Opening Hours</h2>
+      <div class="hours__grid">
+        <div class="hours__row">
+          <span class="hours__day">Monday</span>
+          <span class="hours__time">09.00 – 22.00</span>
+        </div>
+        <div class="hours__row">
+          <span class="hours__day">Tuesday – Thursday</span>
+          <span class="hours__time">09.00 – 23.00</span>
+        </div>
+        <div class="hours__row">
+          <span class="hours__day">Friday</span>
+          <span class="hours__time">09.00 – 01.00</span>
+        </div>
+        <div class="hours__row">
+          <span class="hours__day">Saturday</span>
+          <span class="hours__time">09.00 – 01.00</span>
+        </div>
+        <div class="hours__row">
+          <span class="hours__day">Sunday</span>
+          <span class="hours__time">09.00 – 19.00</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__brand">The Living Room</div>
+    <div class="footer__tagline">Cafe &middot; Cocktail Bar</div>
+    <div class="footer__social">
+      <a href="https://facebook.com/thelivingroomcbk" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://instagram.com/thelivingroomcbk" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer__copy">&copy; 2026 The Living Room. All rights reserved.</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
