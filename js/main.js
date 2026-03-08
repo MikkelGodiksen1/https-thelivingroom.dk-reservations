@@ -28,19 +28,37 @@
   // Force autoplay hero video
   var heroVideo = document.querySelector('.hero__video');
   if (heroVideo) {
+    // Ensure muted is set (required for autoplay in all browsers)
     heroVideo.muted = true;
-    heroVideo.setAttribute('muted', '');
-    heroVideo.setAttribute('playsinline', '');
-    var playPromise = heroVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(function () {
-        // Retry on user interaction if autoplay blocked
-        document.addEventListener('click', function playOnce() {
-          heroVideo.play();
-          document.removeEventListener('click', playOnce);
+    heroVideo.defaultMuted = true;
+    heroVideo.volume = 0;
+
+    function tryPlay() {
+      var p = heroVideo.play();
+      if (p !== undefined) {
+        p.catch(function () {
+          // If autoplay still blocked, retry on any user interaction
+          ['click', 'touchstart', 'scroll'].forEach(function (evt) {
+            document.addEventListener(evt, function handler() {
+              heroVideo.muted = true;
+              heroVideo.play();
+              document.removeEventListener(evt, handler);
+            }, { once: true });
+          });
         });
-      });
+      }
     }
+
+    // Try immediately
+    tryPlay();
+
+    // Also try when video data is ready
+    heroVideo.addEventListener('loadeddata', tryPlay);
+    heroVideo.addEventListener('canplay', tryPlay);
+
+    // Also try after a short delay (some browsers need this)
+    setTimeout(tryPlay, 500);
+    setTimeout(tryPlay, 1500);
   }
 
   // Scroll-aware nav (home page only — when nav starts transparent)
