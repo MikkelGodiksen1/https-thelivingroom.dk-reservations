@@ -25,6 +25,24 @@
     });
   }
 
+  // Force autoplay hero video
+  var heroVideo = document.querySelector('.hero__video');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.setAttribute('muted', '');
+    heroVideo.setAttribute('playsinline', '');
+    var playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function () {
+        // Retry on user interaction if autoplay blocked
+        document.addEventListener('click', function playOnce() {
+          heroVideo.play();
+          document.removeEventListener('click', playOnce);
+        });
+      });
+    }
+  }
+
   // Scroll-aware nav (home page only — when nav starts transparent)
   var navbar = document.getElementById('navbar');
   var hero = document.getElementById('hero');

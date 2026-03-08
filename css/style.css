@@ -682,8 +682,8 @@ h1, h2, h3, h4 {
 
 .reviews__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   max-width: var(--max-width);
   margin: 0 auto 2.5rem;
 }
@@ -778,7 +778,7 @@ h1, h2, h3, h4 {
   }
 
   .reviews__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .menu-grid {
@@ -797,6 +797,10 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 480px) {
+  .reviews__grid {
+    grid-template-columns: 1fr;
+  }
+
   .gallery__grid {
     grid-template-columns: 1fr;
   }
