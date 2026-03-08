@@ -25,23 +25,35 @@
     });
   }
 
-  // Force autoplay hero video
-  var heroVideo = document.querySelector('.hero__video');
+  // Hero video autoplay with fallback image
+  var heroVideo = document.getElementById('heroVideo');
+  var heroFallback = document.getElementById('heroFallback');
+
   if (heroVideo) {
-    // Ensure muted is set (required for autoplay in all browsers)
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
+    heroVideo.setAttribute('muted', '');
     heroVideo.volume = 0;
+
+    function onVideoPlaying() {
+      if (heroFallback) {
+        heroFallback.classList.add('is-hidden');
+      }
+    }
+
+    heroVideo.addEventListener('playing', onVideoPlaying);
 
     function tryPlay() {
       var p = heroVideo.play();
       if (p !== undefined) {
-        p.catch(function () {
-          // If autoplay still blocked, retry on any user interaction
-          ['click', 'touchstart', 'scroll'].forEach(function (evt) {
+        p.then(function () {
+          onVideoPlaying();
+        }).catch(function () {
+          // Autoplay blocked — play on first user interaction
+          ['click', 'touchstart', 'scroll', 'keydown'].forEach(function (evt) {
             document.addEventListener(evt, function handler() {
               heroVideo.muted = true;
-              heroVideo.play();
+              heroVideo.play().then(onVideoPlaying).catch(function () {});
               document.removeEventListener(evt, handler);
             }, { once: true });
           });
@@ -49,16 +61,12 @@
       }
     }
 
-    // Try immediately
+    // Try at multiple stages to cover all browser behaviours
     tryPlay();
-
-    // Also try when video data is ready
-    heroVideo.addEventListener('loadeddata', tryPlay);
     heroVideo.addEventListener('canplay', tryPlay);
-
-    // Also try after a short delay (some browsers need this)
-    setTimeout(tryPlay, 500);
-    setTimeout(tryPlay, 1500);
+    setTimeout(tryPlay, 300);
+    setTimeout(tryPlay, 1000);
+    setTimeout(tryPlay, 2500);
   }
 
   // Scroll-aware nav (home page only — when nav starts transparent)

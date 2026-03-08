@@ -25,8 +25,10 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <video class="hero__video" src="images/hero-video.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="images/fireplace.png"></video>
-    <img src="images/fireplace.png" alt="The Living Room interior with fireplace and leather sofas" class="hero__image hero__image--fallback">
+    <img src="images/fireplace.png" alt="The Living Room interior with fireplace and leather sofas" class="hero__image hero__image--fallback" id="heroFallback">
+    <video class="hero__video" id="heroVideo" muted loop playsinline webkit-playsinline preload="auto">
+      <source src="images/hero-video.mp4" type="video/mp4">
+    </video>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <h1 class="hero__title">The<br>Living<br>Room</h1>
