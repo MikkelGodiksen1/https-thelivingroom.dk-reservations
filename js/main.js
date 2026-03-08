@@ -90,4 +90,22 @@
     );
     observer.observe(hero);
   }
+  // Gallery scroll-triggered fade-in
+  var fadeItems = document.querySelectorAll('.gallery__fade');
+  if (fadeItems.length > 0 && 'IntersectionObserver' in window) {
+    var fadeObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    fadeItems.forEach(function (item) {
+      fadeObserver.observe(item);
+    });
+  }
 })();
